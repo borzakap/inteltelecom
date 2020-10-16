@@ -49,7 +49,7 @@ class Sms implements ModelsInterface{
     }
     
     /**
-     * validating the sms params
+     * validating the sms parameters
      * @param array $params
      * @throws ApiException
      */
