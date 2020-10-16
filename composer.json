@@ -1,0 +1,21 @@
+{
+    "name": "borzakap/inteltelecom",
+    "description": "library for inteltelecom.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["api", "inteltelecom"],
+    "authors": [
+        {
+            "name": "borzakap",
+            "email": "borakap@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "borzakap\\inteltelecom\\" : "src"
+        }
+    }
+}
