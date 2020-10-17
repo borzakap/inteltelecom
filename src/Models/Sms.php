@@ -42,7 +42,7 @@ class Sms implements ModelsInterface{
                 $abonent->addAttribute('client_id_sms', (int)$abonentdata['client_id_sms']);
             }
         }
-        if($numSms === 0){
+        if($numSms === 0){ 
             throw new ApiException(404, 'There is no valid phone numbers');
         }
         return $xml;
