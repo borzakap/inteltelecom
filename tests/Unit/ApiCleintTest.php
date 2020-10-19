@@ -10,8 +10,8 @@ class ApiCleintTest extends TestCase{
 
     public function setUp(): void {
         $severIp = '136.243.60.141';
-        $userLogin = 'MILLENIUM';
-        $userPassword = 'DZ5rzLCK';
+        $userLogin = 'User';
+        $userPassword = 'pass';
         
         $this->apiClient = new ApiClient($severIp, $userLogin, $userPassword);
     }
