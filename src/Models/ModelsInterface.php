@@ -14,9 +14,9 @@ interface ModelsInterface {
     /**
      * Formating the xml
      * @param array $params
-     * @param SimpleXMLElement $sml
+     * @param SimpleXMLElement $xml
      */
-    public function Format(array $params, SimpleXMLElement $sml);
+    public function Format(array $params, SimpleXMLElement $xml);
     
     /**
      * Validate data
