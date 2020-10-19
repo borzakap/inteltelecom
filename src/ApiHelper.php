@@ -9,7 +9,7 @@ namespace borzakap\inteltelecom;
  */
 class ApiHelper {
 
-    protected $phoneCodes = [
+    const phoneCodes = [
         '38039', // Киевстар (Golden Telecom)
         '38050', // МТС
         '38063', // life:)
@@ -82,7 +82,7 @@ class ApiHelper {
         if (strlen($p) != 12) {
             return null;
         }
-        if ($this->isMobile($p)) {
+        if (self::isMobile($p)) {
             return $p;
         }
         return null;
@@ -94,7 +94,7 @@ class ApiHelper {
      * @return bool
      */
     private function isMobile(string $phone): bool {
-        foreach ($this->phoneCodes as $code) {
+        foreach (self::phoneCodes as $code) {
             $isMobile = strpos($phone, $code);
             if ($isMobile !== false) {
                 return true;

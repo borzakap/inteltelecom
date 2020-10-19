@@ -38,7 +38,6 @@ class ApiRequest {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         curl_setopt($ch, CURLOPT_URL, $href);
         $result = curl_exec($ch);
-        $info = curl_getinfo($ch);
         $error = curl_error($ch);
         $errno = curl_errno($ch);
 
@@ -48,7 +47,7 @@ class ApiRequest {
             throw new ApiException($errno, $error);
         }
 
-        return $this->parseResponce($result, $info);
+        return self::parseResponce($result);
     }
 
     /**
@@ -58,12 +57,12 @@ class ApiRequest {
      * @return SimpleXMLElement
      * @throws ApiException
      */
-    private function parseResponce(string $result, array $info): SimpleXMLElement {
+    private function parseResponce(?string $result): SimpleXMLElement {
         $response = new SimpleXMLElement($result);
-        if (isset($response->response->error)) {
-            throw new ApiException($info['http_code'], $response->response->error);
+        if (isset($response->error)) {
+            throw new ApiException(300, $response->error);
         }
-        return $response->response;
+        return $response;
     }
 
 }

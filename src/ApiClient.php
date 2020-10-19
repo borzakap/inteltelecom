@@ -65,7 +65,7 @@ class ApiClient{
         $login = $security->addChild('login');
         $login->addAttribute('value', $userLogin);
         $password = $security->addChild('password');
-        $password->addAttribute('password', $userPassword);
+        $password->addAttribute('value', $userPassword);
     }
 
     /**
@@ -77,6 +77,7 @@ class ApiClient{
         $model = new Model('Sms');
         $model->Validate($params);
         $xml = $model->Format($params, $this->xml);
+        print_r($xml->asXML());
         $response = ApiRequest::sendRequest($this->serverIp, $xml->asXML(), 'sms');
         return $response;
     }

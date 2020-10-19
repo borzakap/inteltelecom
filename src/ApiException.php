@@ -29,11 +29,11 @@ class ApiException extends Exception{
     ];
     
     public function __construct(
-            $code = 0,
-            $message = null, 
+            int $code = 0,
+            string $message = null, 
             Throwable $previous = null)
     {
-        if (isset($this->errors[$code])) {
+        if (isset($this->errors[$code]) && !$message) {
             $message = $this->errors[$code];
         }
         parent::__construct($message, $code, $previous);
@@ -46,7 +46,7 @@ class ApiException extends Exception{
      * @param string $message
      * @return \borzakap\inteltelecom\ApiException
      */
-    public function setErrorMessage(string $message): ApiException{
+    protected function setErrorMessage(string $message): ApiException{
         $this->message = $message;
         return $this;
     }
@@ -64,7 +64,7 @@ class ApiException extends Exception{
      * @param int $code
      * @return \borzakap\inteltelecom\ApiException
      */
-    public function setErrorCode(int $code): ApiException{
+    protected function setErrorCode(int $code): ApiException{
         $this->code = $code;
         return $this;
     }

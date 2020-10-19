@@ -1,4 +1,4 @@
-# Intletelecom API
+# Inteltelecom API
 
 ## Instalation
 

@@ -2,6 +2,9 @@
 vendor/
 index.php
 
+# PhpUnit #
+.phpunit.result.cache
+
 # NetBeans specific #
 nbproject/
 build/
