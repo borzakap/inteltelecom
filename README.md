@@ -70,7 +70,7 @@ $result = $apiClient->sendState($state_collection);
 ```
 As result will be returned a SimpleXMLElement object 
 ```php
-$result->information // with stateuses send | not_deliver | expired | deliver | partly_deliver
-$result->information['id_sms'] // internal id of sms
-$result->information['time'] // time of status was changed
+$result->state // with stateuses send | not_deliver | expired | deliver | partly_deliver
+$result->state['id_sms'] // internal id of sms
+$result->state['time'] // time of status was changed
 ```
