@@ -30,17 +30,17 @@ class ApiClient{
 
     /**
      * Construct
-     * @param string $sever_ip
+     * @param string $server_ip
      * @param string $user_login
      * @param string $user_password
      * @throws ApiException
      */
     public function __construct(
-            string $sever_ip,
+            string $server_ip,
             string $user_login,
             string $user_password
     ) {
-        if(empty($sever_ip)){
+        if(empty($server_ip)){
             throw new ApiException(500, 'server IP is required');
         }
         if(empty($user_login)){
@@ -49,7 +49,7 @@ class ApiClient{
         if(empty($user_password)){
             throw new ApiException(500, 'user password is required');
         }
-        $this->sever_ip = $sever_ip;
+        $this->server_ip = $server_ip;
         $this->setLogin($user_login, $user_password);
     }
 
@@ -75,7 +75,7 @@ class ApiClient{
      * @return SimpleXMLElement
      */
     public function sendSms(BaseApiCollection $collection): SimpleXMLElement {
-        $sms_service = new SmsService($this->xml, $this->sever_ip);
+        $sms_service = new SmsService($this->xml, $this->server_ip);
         $sms_service->format($collection);
         return $sms_service->send();
     }
@@ -86,7 +86,7 @@ class ApiClient{
      * @return SimpleXMLElement
      */
     public function sendState(BaseApiCollection $collection): SimpleXMLElement {
-        $state_service = new StateService($this->xml, $this->sever_ip);
+        $state_service = new StateService($this->xml, $this->server_ip);
         $state_service->format($collection);
         return $state_service->send();
     }
