@@ -20,7 +20,7 @@ class ApiClient{
      * server ip
      * @var string
      */
-    private $serverIp;
+    private $server_ip;
     
     /**
      * simpleXmlElement of data
@@ -30,43 +30,43 @@ class ApiClient{
 
     /**
      * Construct
-     * @param string $severIp
-     * @param string $userLogin
-     * @param string $userPassword
+     * @param string $sever_ip
+     * @param string $user_login
+     * @param string $user_password
      * @throws ApiException
      */
     public function __construct(
-            string $severIp,
-            string $userLogin,
-            string $userPassword
+            string $sever_ip,
+            string $user_login,
+            string $user_password
     ) {
-        if(empty($severIp)){
-            throw new ApiException(500, 'serverIp is required');
+        if(empty($sever_ip)){
+            throw new ApiException(500, 'server IP is required');
         }
-        if(empty($userLogin)){
-            throw new ApiException(500, 'userLogin is required');
+        if(empty($user_login)){
+            throw new ApiException(500, 'user login is required');
         }
-        if(empty($userPassword)){
-            throw new ApiException(500, 'userPassword is required');
+        if(empty($user_password)){
+            throw new ApiException(500, 'user password is required');
         }
-        $this->serverIp = $severIp;
-        $this->setLogin($userLogin, $userPassword);
+        $this->sever_ip = $sever_ip;
+        $this->setLogin($user_login, $user_password);
     }
 
     /**
      * set login metadata
-     * @param string $userLogin
-     * @param string $userPassword
+     * @param string $user_login
+     * @param string $user_password
      */
-    private function setLogin(string $userLogin, string $userPassword)
+    private function setLogin(string $user_login, string $user_password)
     {
         $xmlString = '<?xml version="1.0" encoding="utf-8"?><request></request>'; 
         $this->xml = new SimpleXMLElement($xmlString);
         $security = $this->xml->addChild('security');
         $login = $security->addChild('login');
-        $login->addAttribute('value', $userLogin);
+        $login->addAttribute('value', $user_login);
         $password = $security->addChild('password');
-        $password->addAttribute('value', $userPassword);
+        $password->addAttribute('value', $user_password);
     }
     
     /**
@@ -75,7 +75,7 @@ class ApiClient{
      * @return SimpleXMLElement
      */
     public function sendSms(BaseApiCollection $collection): SimpleXMLElement {
-        $sms_service = new SmsService($this->xml, $this->serverIp);
+        $sms_service = new SmsService($this->xml, $this->sever_ip);
         $sms_service->format($collection);
         return $sms_service->send();
     }
@@ -86,7 +86,7 @@ class ApiClient{
      * @return SimpleXMLElement
      */
     public function sendState(BaseApiCollection $collection): SimpleXMLElement {
-        $state_service = new StateService($this->xml, $this->ip);
+        $state_service = new StateService($this->xml, $this->sever_ip);
         $state_service->format($collection);
         return $state_service->send();
     }
