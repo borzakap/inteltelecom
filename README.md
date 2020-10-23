@@ -47,10 +47,10 @@ $result = $apiClient->sendSms($message_collection);
 ```
 As result will be returned a SimpleXMLElement object
 ```php
-$result[0]->information // with status 'send' in sucsses or error message
-$result[0]->information['number_sms'] // number of sms
-$result[0]->information['id_sms'] // internal id of sms (neaded to revise the status of sms)
-$result[0]->information['parts'] // parts of sms` text (one part of sms equal 70 chars)
+$result[0]->information; // with status 'send' in sucsses or error message
+$result[0]->information['number_sms']; // number of sms
+$result[0]->information['id_sms']; // internal id of sms (neaded to revise the status of sms)
+$result[0]->information['parts']; // parts of sms` text (one part of sms equal 70 chars)
 ```
 ### Get sms states
 ```php
@@ -70,7 +70,7 @@ $result = $apiClient->sendState($state_collection);
 ```
 As result will be returned a SimpleXMLElement object 
 ```php
-$result->state // with stateuses send | not_deliver | expired | deliver | partly_deliver
-$result->state['id_sms'] // internal id of sms
-$result->state['time'] // time of status was changed
+$result->state; // with stateuses send | not_deliver | expired | deliver | partly_deliver
+$result->state['id_sms']; // internal id of sms
+$result->state['time']; // time of status was changed
 ```
