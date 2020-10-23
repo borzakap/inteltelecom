@@ -29,7 +29,10 @@ $message_model->setText('text');
 
 // create abonents collection
 $abonent_model = new SmsAbonentModel();
-$abonent_model->setPhone('0938499546')->setTimeSend('2020-11-23 12:00')->setValidityPeriod('2020-11-24 12:00');
+$abonent_model->setPhone('0938499546')
+    ->setTimeSend('2020-11-23 12:00') // optional - time to send sms (else it will be now)
+    ->setValidityPeriod('2020-11-24 12:00') // optional - validity period (else it will be after 24 hour)
+    ->setClientIdSms(3434); // optional - int flag do not send sms to same number with the same text
 $abonent_collection->add($abonent_model);
 
 // set abonents to message model
