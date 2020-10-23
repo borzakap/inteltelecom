@@ -29,6 +29,12 @@ class StateService extends BaseApiService{
         }
     }
     
+    /**
+     * format one element
+     * @param SimpleXMLElement $get_state
+     * @param array $states
+     * @return void
+     */
     protected function formatState(SimpleXMLElement $get_state, array $states): void{
         foreach ($states as $k => $v){
             $get_state->addChild($k, $v);
