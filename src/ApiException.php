@@ -2,7 +2,6 @@
 
 namespace borzakap\inteltelecom;
 
-
 use Exception;
 use Throwable;
 
@@ -10,7 +9,7 @@ use Throwable;
  * Class ApiException
  * 
  * @package borzakap\inteltelecom
- * @author alexey
+ * @author borzakap <borzakap@gmail.com>
  */
 class ApiException extends Exception{
     
@@ -36,9 +35,10 @@ class ApiException extends Exception{
         if (isset($this->errors[$code]) && !$message) {
             $message = $this->errors[$code];
         }
-        parent::__construct($message, $code, $previous);
-        
+                
         $this->setErrorMessage($message)->setErrorCode($code);
+
+        parent::__construct($message, $code, $previous);
     }
     
     /**

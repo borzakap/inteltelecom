@@ -1,13 +1,13 @@
 {
     "name": "borzakap/inteltelecom",
-    "description": "library for inteltelecom.",
+    "description": "library for inteltelecom sending sms service",
     "type": "library",
     "license": "MIT",
-    "keywords": ["api", "inteltelecom"],
+    "keywords": ["api", "inteltelecom", "sms"],
     "authors": [
         {
             "name": "borzakap",
-            "email": "borakap@gmail.com"
+            "email": "borzakap@gmail.com"
         }
     ],
     "require": {
@@ -15,7 +15,10 @@
     },
     "autoload": {
         "psr-4": {
-            "borzakap\\inteltelecom\\" : "src"
+            "borzakap\\inteltelecom\\" : "src/",
+            "borzakap\\inteltelecom\\Collections\\" : "src/Collections",
+            "borzakap\\inteltelecom\\Models\\" : "src/Models",
+            "borzakap\\inteltelecom\\Services\\" : "src/Services"
         }
     },
     "require-dev": {

@@ -2,6 +2,8 @@
 
 namespace borzakap\inteltelecom;
 
+use DateTime;
+
 /**
  * Class apiHelper
  *
@@ -29,48 +31,46 @@ class ApiHelper {
     ];
 
     /**
-     * return the date to send
-     * @param array $data
+     * validate time to send
+     * @param string|null $time_send
      * @return string
      */
-    public static function setTimeSend(array $data): string {
-
-        $now = time();
-
-        if (isset($data['time_send']) && !empty($data['time_send'])) {
-            $time_cur = strtotime($data['time_send']);
+    public static function timeSendValidate(?string $time_send): string {
+        $now = new DateTime('now');
+        if ($time_send) {
+            $time_cur = new DateTime($time_send);
             $time_send = ($now > $time_cur) ? $now : $time_cur;
-            return date('Y-m-d H:i', $time_send);
+            return $time_send->format('Y-m-d H:i');
         }
-        return date('Y-m-d H:i', $now);
+        return $now->format('Y-m-d H:i');
     }
 
     /**
-     * set the validity period
-     * @param array $data
+     * validate validity period
+     * @param string|null $validity_period
      * @return string
      */
-    public static function setValidityPeriod(array $data): string {
-        $now = time();
-
-        if (isset($data['validity_period']) && !empty($data['validity_period'])) {
-            $time_cur = strtotime($data['validity_period']);
-            $time_send = ($now > $time_cur) ? ($now + 24 * 60 * 60) : $time_cur;
-            return date('Y-m-d H:i', $time_send);
+    public static function validityPeriodValidate(?string $validity_period): string {
+        $now = new DateTime('now');
+        $one_day = new DateTime('+1 day');
+        if ($validity_period) {
+            $time_cur = new DateTime($validity_period);
+            $time_send = ($now > $time_cur) ? $one_day : $time_cur;
+            return $time_send->format('Y-m-d H:i');
         }
-        return date('Y-m-d H:i', ($now + 24 * 60 * 60));
+        return $one_day->format('Y-m-d H:i');
     }
 
     /**
-     * validate the phone number
-     * @param array $data
-     * @return string|null
+     * format and validate phone number
+     * @param string|null $phone
+     * @return int|null
      */
-    public static function phoneValidate(array $data): ?string {
-        if(!isset($data['phone']) || empty($data['phone'])){
+    public static function phoneValidate(?string $phone): ?int {
+        if (!$phone) {
             return null;
         }
-        $p = preg_replace('/(\t|\n|\v|\f|\r| |\xC2\x85|\xc2\xa0|\xe1\xa0\x8e|\xe2\x80[\x80-\x8D]|\xe2\x80\xa8|\xe2\x80\xa9|\xe2\x80\xaF|\xe2\x81\x9f|\xe2\x81\xa0|\xe3\x80\x80|\xef\xbb\xbf)+/', '', $data['phone']);
+        $p = preg_replace('/(\t|\n|\v|\f|\r| |\xC2\x85|\xc2\xa0|\xe1\xa0\x8e|\xe2\x80[\x80-\x8D]|\xe2\x80\xa8|\xe2\x80\xa9|\xe2\x80\xaF|\xe2\x81\x9f|\xe2\x81\xa0|\xe3\x80\x80|\xef\xbb\xbf)+/', '', $phone);
         $p = preg_replace("/[^0-9]/", '', $p);
         $p = substr($p, -10);
         if (strlen($p) == 9) {
@@ -83,7 +83,7 @@ class ApiHelper {
             return null;
         }
         if (self::isMobile($p)) {
-            return $p;
+            return (int) $p;
         }
         return null;
     }
@@ -101,6 +101,15 @@ class ApiHelper {
             }
         }
         return false;
+    }
+
+    /**
+     * set string to camel case
+     * @param string $string
+     * @return string
+     */
+    public static function toCamelCase(string $string): string {
+        return str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
     }
 
 }

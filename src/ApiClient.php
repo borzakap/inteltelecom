@@ -2,9 +2,10 @@
 
 namespace borzakap\inteltelecom;
 
-use borzakap\inteltelecom\ApiRequest;
-use borzakap\inteltelecom\Model;
 use borzakap\inteltelecom\ApiException;
+use borzakap\inteltelecom\Collections\BaseApiCollection;
+use borzakap\inteltelecom\Services\SmsService;
+use borzakap\inteltelecom\Services\StateService;
 use SimpleXMLElement;
 
 /**
@@ -25,7 +26,7 @@ class ApiClient{
      * simpleXmlElement of data
      * @var SimpleXMLElement
      */
-    public $xml;
+    private $xml;
 
     /**
      * Construct
@@ -67,19 +68,26 @@ class ApiClient{
         $password = $security->addChild('password');
         $password->addAttribute('value', $userPassword);
     }
-
+    
     /**
-     * sending the sms
-     * @param array $params
+     * send sms reques
+     * @param BaseApiCollection $collection
      * @return SimpleXMLElement
      */
-    public function sendSms(array $params): SimpleXMLElement {
-        $model = new Model('Sms');
-        $model->Validate($params);
-        $xml = $model->Format($params, $this->xml);
-        $response = ApiRequest::sendRequest($this->serverIp, $xml->asXML(), 'sms');
-        return $response;
+    public function sendSms(BaseApiCollection $collection): SimpleXMLElement {
+        $sms_service = new SmsService($this->xml, $this->serverIp);
+        $sms_service->format($collection);
+        return $sms_service->send();
     }
     
-
+    /**
+     * send state request
+     * @param BaseApiCollection $collection
+     * @return SimpleXMLElement
+     */
+    public function sendState(BaseApiCollection $collection): SimpleXMLElement {
+        $state_service = new StateService($this->xml, $this->ip);
+        $state_service->format($collection);
+        return $state_service->send();
+    }
 }
