@@ -49,7 +49,7 @@ class ApiRequest {
      * @return SimpleXMLElement
      * @throws ApiException
      */
-    private function parseResponce(?string $result): SimpleXMLElement {
+    private static function parseResponce(?string $result): SimpleXMLElement {
         $response = new SimpleXMLElement($result);
         if (isset($response->error)) {
             throw new ApiException(300, $response->error);
