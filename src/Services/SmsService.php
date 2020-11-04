@@ -39,7 +39,7 @@ class SmsService extends BaseApiService{
             if($k == 'abonent'){
                 $this->formatAbonents($message, $v);
             }else{
-                $message->addAttribute($k, $v);
+                $message->addChild($k, $v);
             }
         }
     }

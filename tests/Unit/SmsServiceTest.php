@@ -35,6 +35,7 @@ class SmsServiceTest extends TestCase{
         $message_collection->add($message_model);
         $message_service = new SmsService($xml, $ip);
         $message_service->format($message_collection);
+        var_dump($message_service->asXML());
         $this->assertStringContainsString('0938499546', $message_service->asXML());
     }
 }

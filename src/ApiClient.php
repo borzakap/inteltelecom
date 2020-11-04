@@ -70,7 +70,7 @@ class ApiClient{
     }
     
     /**
-     * send sms reques
+     * send sms request
      * @param BaseApiCollection $collection
      * @return SimpleXMLElement
      */
