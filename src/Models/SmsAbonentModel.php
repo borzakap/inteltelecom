@@ -22,13 +22,13 @@ class SmsAbonentModel extends BaseApiModel{
      * time to send
      * @var string
      */
-    private string $time_send;
+    private $time_send;
     
     /**
      * validity period
      * @var string
      */
-    private string $validity_period;
+    private $validity_period;
     
     /**
      * client id sms
@@ -40,7 +40,7 @@ class SmsAbonentModel extends BaseApiModel{
      * number sms
      * @var int
      */
-    private int $number_sms;
+    private $number_sms;
 
     /**
      * constructor
