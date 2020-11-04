@@ -93,7 +93,7 @@ class ApiHelper {
      * @param string $phone
      * @return bool
      */
-    private function isMobile(string $phone): bool {
+    private static function isMobile(string $phone): bool {
         foreach (self::phoneCodes as $code) {
             $isMobile = strpos($phone, $code);
             if ($isMobile !== false) {
