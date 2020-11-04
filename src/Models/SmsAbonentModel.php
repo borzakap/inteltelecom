@@ -14,9 +14,9 @@ class SmsAbonentModel extends BaseApiModel{
     
     /**
      * phone number
-     * @var int
+     * @var int|null
      */
-    private ?int $phone = null;
+    private $phone = null;
     
     /**
      * time to send
@@ -34,7 +34,7 @@ class SmsAbonentModel extends BaseApiModel{
      * client id sms
      * @var int|null
      */
-    private ?int $client_id_sms = null;
+    private $client_id_sms = null;
 
     /**
      * number sms

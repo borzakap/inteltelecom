@@ -16,7 +16,7 @@ class StateModel extends BaseApiModel{
      * id sms
      * @var string|null
      */
-    protected ?string $id_sms = null;
+    protected $id_sms = null;
 
     /**
      * set id sms

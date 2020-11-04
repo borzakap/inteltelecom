@@ -16,19 +16,19 @@ class SmsMessageModel extends BaseApiModel{
      * sender name
      * @var string|null
      */
-    private ?string $sender = null;
+    private $sender = null;
     
     /**
      * message text
      * @var string|null
      */
-    private ?string $text = null;
+    private $text = null;
     
     /**
      * abonents collection
      * @var SmsAbonentCollection|null
      */
-    private ?SmsAbonentCollection $abonent = null;
+    private $abonent = null;
 
     /**
      * get sender
