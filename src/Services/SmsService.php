@@ -13,7 +13,7 @@ use SimpleXMLElement;
  */
 class SmsService extends BaseApiService{
     
-    protected string $method = '';
+    protected $method = '';
 
     /**
      * prepare xml object to send sms

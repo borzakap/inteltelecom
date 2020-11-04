@@ -17,19 +17,19 @@ abstract class BaseApiService {
      * xml object
      * @var SimpleXMLElement 
      */
-    protected SimpleXMLElement $xml;
+    protected $xml;
 
     /**
      * method to send
      * @var string
      */
-    protected string $method;
+    protected $method;
     
     /**
      * server ip
      * @var string
      */
-    protected string $ip;
+    protected $ip;
 
     /**
      * constructor

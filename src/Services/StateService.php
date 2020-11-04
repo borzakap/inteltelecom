@@ -15,7 +15,7 @@ use SimpleXMLElement;
 
 class StateService extends BaseApiService{
 
-    protected string $method = 'state.php';
+    protected $method = 'state.php';
 
     /**
      * prepare xml object
